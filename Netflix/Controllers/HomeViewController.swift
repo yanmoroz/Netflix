@@ -7,6 +7,14 @@
 
 import UIKit
 
+enum Sections: Int {
+    case TrendingMovies
+    case TrendingTV
+    case Popular
+    case Upcoming
+    case TopRated
+}
+
 final class HomeViewController: UIViewController {
     private lazy var homeFeedTable: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -18,7 +26,7 @@ final class HomeViewController: UIViewController {
             frame: CGRect(
                 x: 0, y: 0,
                 width: view.bounds.width,
-                height: 450
+                height: 500
             )
         )
         tableView.tableHeaderView = headerView
@@ -73,7 +81,57 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier,
                                                        for: indexPath) as? CollectionViewTableViewCell else {
-            fatalError("Unsupported")
+            return UITableViewCell()
+        }
+        
+        switch indexPath.section {
+        case Sections.TrendingMovies.rawValue:
+            APICaller.shared.getTrendingMovies { result in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        case Sections.TrendingTV.rawValue:
+            APICaller.shared.getTrendingTV { result in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        case Sections.Popular.rawValue:
+            APICaller.shared.getPopularMovies { result in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        case Sections.Upcoming.rawValue:
+            APICaller.shared.getUpcomingMovies { result in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        case Sections.TopRated.rawValue:
+            APICaller.shared.getTopRatedMovies { result in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        default:
+            return UITableViewCell()
         }
         
         return cell
@@ -91,7 +149,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         header.textLabel?.textColor = .label
-        header.textLabel?.text = header.textLabel?.text?.lowercased()
+        header.textLabel?.text = header.textLabel?.text?.capitalizeFirstLetter()
         header.textLabel?.frame = CGRect(
             x: header.bounds.origin.x + 20,
             y: header.bounds.origin.y,
