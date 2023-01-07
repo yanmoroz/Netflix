@@ -8,8 +8,6 @@
 import UIKit
 
 final class CollectionViewTableViewCell: UITableViewCell {
-    static let identifier = "CollectionViewTableViewCell"
-    
     private var titles = [Title]()
     
     private lazy var collectionView: UICollectionView = {
@@ -18,7 +16,7 @@ final class CollectionViewTableViewCell: UITableViewCell {
         layout.scrollDirection = .horizontal
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
+        collectionView.register(cellWithClass: TitleCollectionViewCell.self)
         collectionView.delegate = self
         collectionView.dataSource = self
         return collectionView
@@ -53,14 +51,11 @@ extension CollectionViewTableViewCell: UICollectionViewDataSource, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        
         guard let model = titles[indexPath.item].posterPath else {
             return UICollectionViewCell()
         }
         
+        let cell = collectionView.dequeueReusableCell(withClass: TitleCollectionViewCell.self, for: indexPath)
         cell.configure(with: model)
         return cell
     }

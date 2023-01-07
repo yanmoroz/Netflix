@@ -9,8 +9,6 @@ import UIKit
 import SDWebImage
 
 class TitleCollectionViewCell: UICollectionViewCell {
-    static let identifier = "TitleCollectionViewCell"
-    
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill

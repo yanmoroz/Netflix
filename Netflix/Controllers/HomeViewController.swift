@@ -16,12 +16,12 @@ enum Sections: Int {
 }
 
 final class HomeViewController: UIViewController {
-    private lazy var homeFeedTable: UITableView = {
+    private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(CollectionViewTableViewCell.self,
-                           forCellReuseIdentifier: CollectionViewTableViewCell.identifier)
+        tableView.register(cellWithClass: CollectionViewTableViewCell.self)
+        
         let headerView = HeroHeaderView(
             frame: CGRect(
                 x: 0, y: 0,
@@ -44,13 +44,13 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        view.addSubview(homeFeedTable)
+        view.addSubview(tableView)
         setUpNavBar()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        homeFeedTable.frame = view.bounds
+        tableView.frame = view.bounds
     }
     
     private func setUpNavBar() {
@@ -79,10 +79,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier,
-                                                       for: indexPath) as? CollectionViewTableViewCell else {
-            return UITableViewCell()
-        }
+        let cell = tableView.dequeueReusableCell(withClass: CollectionViewTableViewCell.self, for: indexPath)
         
         switch indexPath.section {
         case Sections.TrendingMovies.rawValue:
