@@ -16,6 +16,7 @@ enum Sections: Int {
 }
 
 final class HomeViewController: UIViewController {
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.delegate = self

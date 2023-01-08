@@ -8,6 +8,7 @@
 import UIKit
 
 final class UpcomingViewController: UIViewController {
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(cellWithClass: TitleTableViewCell.self)

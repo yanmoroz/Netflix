@@ -35,6 +35,8 @@
 		A313375E2968C445004E67C8 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A313375D2968C445004E67C8 /* UITableViewCell+Extensions.swift */; };
 		A31337602968C458004E67C8 /* UICollectionViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A313375F2968C458004E67C8 /* UICollectionViewCell+Extensions.swift */; };
 		A31337622968E0FC004E67C8 /* TitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31337612968E0FC004E67C8 /* TitleViewModel.swift */; };
+		A313377E296A3AB5004E67C8 /* DiscoverMoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A313377D296A3AB5004E67C8 /* DiscoverMoviesResponse.swift */; };
+		A3133780296A3CDC004E67C8 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A313377F296A3CDC004E67C8 /* SearchResultsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		A313375D2968C445004E67C8 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		A313375F2968C458004E67C8 /* UICollectionViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		A31337612968E0FC004E67C8 /* TitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewModel.swift; sourceTree = "<group>"; };
+		A313377D296A3AB5004E67C8 /* DiscoverMoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverMoviesResponse.swift; sourceTree = "<group>"; };
+		A313377F296A3CDC004E67C8 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,11 +118,8 @@
 		A313371E2965CAF5004E67C8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A31337262965CB5E004E67C8 /* DownloadsViewController.swift */,
-				A31337202965CB0B004E67C8 /* HomeViewController.swift */,
-				A313370E2965C892004E67C8 /* MainTabBarViewController.swift */,
-				A31337242965CB41004E67C8 /* SearchViewController.swift */,
-				A31337222965CB2B004E67C8 /* UpcomingViewController.swift */,
+				A3133781296A3DF1004E67C8 /* Core */,
+				A3133782296A3E50004E67C8 /* General */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -186,6 +187,7 @@
 		A313373E29664299004E67C8 /* APIResponseTypes */ = {
 			isa = PBXGroup;
 			children = (
+				A313377D296A3AB5004E67C8 /* DiscoverMoviesResponse.swift */,
 				A313374C29677B47004E67C8 /* PopularMoviesResponse.swift */,
 				A313374E29677B5C004E67C8 /* TopRatedMoviesResponse.swift */,
 				A3133740296642C4004E67C8 /* TrendingMoviesResponse.swift */,
@@ -201,6 +203,26 @@
 				A313373C29663EF9004E67C8 /* Title.swift */,
 			);
 			path = DataTypes;
+			sourceTree = "<group>";
+		};
+		A3133781296A3DF1004E67C8 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A31337262965CB5E004E67C8 /* DownloadsViewController.swift */,
+				A31337202965CB0B004E67C8 /* HomeViewController.swift */,
+				A313370E2965C892004E67C8 /* MainTabBarViewController.swift */,
+				A31337242965CB41004E67C8 /* SearchViewController.swift */,
+				A31337222965CB2B004E67C8 /* UpcomingViewController.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A3133782296A3E50004E67C8 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				A313377F296A3CDC004E67C8 /* SearchResultsViewController.swift */,
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A31337252965CB41004E67C8 /* SearchViewController.swift in Sources */,
+				A3133780296A3CDC004E67C8 /* SearchResultsViewController.swift in Sources */,
 				A313375E2968C445004E67C8 /* UITableViewCell+Extensions.swift in Sources */,
 				A313374B296779B2004E67C8 /* UpcomingMoviesResponse.swift in Sources */,
 				A313373929660F04004E67C8 /* NSLayoutConstraint+Extensions.swift in Sources */,
@@ -290,6 +313,7 @@
 				A31337272965CB5E004E67C8 /* DownloadsViewController.swift in Sources */,
 				A313375A2968AF5E004E67C8 /* TitleTableViewCell.swift in Sources */,
 				A31337322965FF8A004E67C8 /* HeroHeaderView.swift in Sources */,
+				A313377E296A3AB5004E67C8 /* DiscoverMoviesResponse.swift in Sources */,
 				A313370B2965C892004E67C8 /* AppDelegate.swift in Sources */,
 				A31337302965E37E004E67C8 /* CollectionViewTableViewCell.swift in Sources */,
 				A313374F29677B5C004E67C8 /* TopRatedMoviesResponse.swift in Sources */,

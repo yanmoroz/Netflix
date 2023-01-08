@@ -25,6 +25,8 @@ enum Endpoints: CustomStringConvertible {
     case upcomingMovies
     case popularMovies
     case topRatedMovies
+    case discoverMovies
+    case search(query: String)
     
     var description: String {
         switch self {
@@ -38,6 +40,11 @@ enum Endpoints: CustomStringConvertible {
             return "\(Constants.baseUrl)/3/movie/popular?api_key=\(Constants.apiKey)&language=en-US&page=1"
         case .topRatedMovies:
             return "\(Constants.baseUrl)/3/movie/top_rated?api_key=\(Constants.apiKey)&language=en-US&page=1"
+        case .discoverMovies:
+            return "\(Constants.baseUrl)/3/discover/movie?api_key=\(Constants.apiKey)&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate"
+        case .search(let query):
+            let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+            return "\(Constants.baseUrl)/3/search/movie?api_key=\(Constants.apiKey)&query=\(query)"
         }
     }
 }
@@ -143,6 +150,46 @@ final class APICaller {
             
             do {
                 let  response = try JSONDecoder().decode(TopRatedMoviesResponse.self, from: data)
+                completion(.success(response.results))
+            } catch {
+                completion(.failure(APIError.failedToGetData))
+            }
+         }
+        task.resume()
+    }
+    
+    func getDiscoverMovies(completion: @escaping (Result<[Title], Error>) -> Void) {
+        guard let url = URL(string: "\(Endpoints.discoverMovies)") else {
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            
+            do {
+                let  response = try JSONDecoder().decode(DiscoverMoviesResponse.self, from: data)
+                completion(.success(response.results))
+            } catch {
+                completion(.failure(APIError.failedToGetData))
+            }
+         }
+        task.resume()
+    }
+    
+    func search(with query: String, completion: @escaping (Result<[Title], Error>) -> Void) {
+        guard let url = URL(string: "\(Endpoints.search(query: query))") else {
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            
+            do {
+                let  response = try JSONDecoder().decode(DiscoverMoviesResponse.self, from: data)
                 completion(.success(response.results))
             } catch {
                 completion(.failure(APIError.failedToGetData))
