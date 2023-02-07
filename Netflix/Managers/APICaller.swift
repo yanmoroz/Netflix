@@ -10,14 +10,20 @@ import Foundation
 enum Constants: CustomStringConvertible {
     case apiKey
     case baseUrl
+    case youtubeAPIKey
+    case youtubeBaseUrl
     
     var description: String {
         switch self {
         case .apiKey: return "401407e903d0a8663e49a497eeefa10a"
         case .baseUrl: return "https://api.themoviedb.org"
+        case .youtubeAPIKey: return "AIzaSyBXi1gqEX_Aqw6xgLxIiHfLxCdi7nOW6Gs"
+        case .youtubeBaseUrl: return "https://youtube.googleapis.com/youtube/v3/search?"
         }
     }
 }
+
+// https://youtube.googleapis.com/youtube/v3/search?key=[YOUR_API_KEY]
 
 enum Endpoints: CustomStringConvertible {
     case trendingMovies
@@ -27,6 +33,7 @@ enum Endpoints: CustomStringConvertible {
     case topRatedMovies
     case discoverMovies
     case search(query: String)
+    case getMovie(query: String)
     
     var description: String {
         switch self {
@@ -45,6 +52,9 @@ enum Endpoints: CustomStringConvertible {
         case .search(let query):
             let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
             return "\(Constants.baseUrl)/3/search/movie?api_key=\(Constants.apiKey)&query=\(query)"
+        case .getMovie(let query):
+            let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+            return "\(Constants.youtubeBaseUrl)q=\(query)&key=\(Constants.youtubeAPIKey)"
         }
     }
 }
@@ -149,12 +159,12 @@ final class APICaller {
             }
             
             do {
-                let  response = try JSONDecoder().decode(TopRatedMoviesResponse.self, from: data)
+                let response = try JSONDecoder().decode(TopRatedMoviesResponse.self, from: data)
                 completion(.success(response.results))
             } catch {
                 completion(.failure(APIError.failedToGetData))
             }
-         }
+        }
         task.resume()
     }
     
@@ -169,12 +179,12 @@ final class APICaller {
             }
             
             do {
-                let  response = try JSONDecoder().decode(DiscoverMoviesResponse.self, from: data)
+                let response = try JSONDecoder().decode(DiscoverMoviesResponse.self, from: data)
                 completion(.success(response.results))
             } catch {
                 completion(.failure(APIError.failedToGetData))
             }
-         }
+        }
         task.resume()
     }
     
@@ -189,12 +199,32 @@ final class APICaller {
             }
             
             do {
-                let  response = try JSONDecoder().decode(DiscoverMoviesResponse.self, from: data)
+                let response = try JSONDecoder().decode(DiscoverMoviesResponse.self, from: data)
                 completion(.success(response.results))
             } catch {
                 completion(.failure(APIError.failedToGetData))
             }
-         }
+        }
+        task.resume()
+    }
+    
+    func getMovie(with query: String, completion: @escaping (Result<VideoElement, Error>) -> Void) {
+        guard let url = URL(string: "\(Endpoints.getMovie(query: query))") else {
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            
+            do {
+                let response = try JSONDecoder().decode(YoutubeSearchResults.self, from: data)
+                completion(.success(response.items[0]))
+            } catch {
+                completion(.failure(APIError.failedToGetData))
+            }
+        }
         task.resume()
     }
 }

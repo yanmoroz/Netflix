@@ -37,6 +37,9 @@
 		A31337622968E0FC004E67C8 /* TitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31337612968E0FC004E67C8 /* TitleViewModel.swift */; };
 		A313377E296A3AB5004E67C8 /* DiscoverMoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A313377D296A3AB5004E67C8 /* DiscoverMoviesResponse.swift */; };
 		A3133780296A3CDC004E67C8 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A313377F296A3CDC004E67C8 /* SearchResultsViewController.swift */; };
+		A3133784296B4658004E67C8 /* YoutubeSearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3133783296B4658004E67C8 /* YoutubeSearchResults.swift */; };
+		A3133786296B4D62004E67C8 /* TitlePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3133785296B4D62004E67C8 /* TitlePreviewViewController.swift */; };
+		A3133788296B51BC004E67C8 /* TitlePreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3133787296B51BC004E67C8 /* TitlePreviewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +73,9 @@
 		A31337612968E0FC004E67C8 /* TitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewModel.swift; sourceTree = "<group>"; };
 		A313377D296A3AB5004E67C8 /* DiscoverMoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverMoviesResponse.swift; sourceTree = "<group>"; };
 		A313377F296A3CDC004E67C8 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		A3133783296B4658004E67C8 /* YoutubeSearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResults.swift; sourceTree = "<group>"; };
+		A3133785296B4D62004E67C8 /* TitlePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewController.swift; sourceTree = "<group>"; };
+		A3133787296B51BC004E67C8 /* TitlePreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +144,7 @@
 		A313372B2965E2DC004E67C8 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				A3133787296B51BC004E67C8 /* TitlePreviewViewModel.swift */,
 				A31337612968E0FC004E67C8 /* TitleViewModel.swift */,
 			);
 			path = ViewModels;
@@ -193,6 +200,7 @@
 				A3133740296642C4004E67C8 /* TrendingMoviesResponse.swift */,
 				A313374429677396004E67C8 /* TrendingTVResponse.swift */,
 				A313374A296779B2004E67C8 /* UpcomingMoviesResponse.swift */,
+				A3133783296B4658004E67C8 /* YoutubeSearchResults.swift */,
 			);
 			path = APIResponseTypes;
 			sourceTree = "<group>";
@@ -221,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				A313377F296A3CDC004E67C8 /* SearchResultsViewController.swift */,
+				A3133785296B4D62004E67C8 /* TitlePreviewViewController.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -309,14 +318,17 @@
 				A313373929660F04004E67C8 /* NSLayoutConstraint+Extensions.swift in Sources */,
 				A3133741296642C4004E67C8 /* TrendingMoviesResponse.swift in Sources */,
 				A313370F2965C892004E67C8 /* MainTabBarViewController.swift in Sources */,
+				A3133784296B4658004E67C8 /* YoutubeSearchResults.swift in Sources */,
 				A313374D29677B47004E67C8 /* PopularMoviesResponse.swift in Sources */,
 				A31337272965CB5E004E67C8 /* DownloadsViewController.swift in Sources */,
+				A3133788296B51BC004E67C8 /* TitlePreviewViewModel.swift in Sources */,
 				A313375A2968AF5E004E67C8 /* TitleTableViewCell.swift in Sources */,
 				A31337322965FF8A004E67C8 /* HeroHeaderView.swift in Sources */,
 				A313377E296A3AB5004E67C8 /* DiscoverMoviesResponse.swift in Sources */,
 				A313370B2965C892004E67C8 /* AppDelegate.swift in Sources */,
 				A31337302965E37E004E67C8 /* CollectionViewTableViewCell.swift in Sources */,
 				A313374F29677B5C004E67C8 /* TopRatedMoviesResponse.swift in Sources */,
+				A3133786296B4D62004E67C8 /* TitlePreviewViewController.swift in Sources */,
 				A31337622968E0FC004E67C8 /* TitleViewModel.swift in Sources */,
 				A313373B29663514004E67C8 /* APICaller.swift in Sources */,
 				A313373D29663EF9004E67C8 /* Title.swift in Sources */,
